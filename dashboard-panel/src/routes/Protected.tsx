@@ -1,6 +1,6 @@
 const Protected = () => {
   return (
-   <>This is Protected </>
+<> This is Protected Route</>
   )
 }
 

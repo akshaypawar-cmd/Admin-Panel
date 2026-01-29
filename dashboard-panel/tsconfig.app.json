@@ -9,7 +9,14 @@
     "skipLibCheck": true,
   
     "paths": {
-      "@components":["./src/components/"]
+      "@components":["./src/components/"],
+      "@pages":["./src/pages/"],
+      "@api":["./src/api/"],
+      "mockdata": ["./src/mockdata/"],
+      "@routes":["./src/route/"],
+      "@protected" : ["./src/protected/"],
+      "@container":["./src/container"]
+      
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

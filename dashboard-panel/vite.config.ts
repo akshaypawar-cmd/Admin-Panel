@@ -13,6 +13,8 @@ export default defineConfig({
     "@pages":path.resolve(__dirname,"./src/pages"),
     "@mockdata":path.resolve(__dirname,"./src/mockdata"),
     "@routes":path.resolve(__dirname,"./src/routes"),
-    "@container":path.resolve(__dirname,"./src/container")
+    "@container":path.resolve(__dirname,"./src/container"),
+    "@schema":path.resolve(__dirname,"./src/schema"),
+    "@types":path.resolve(__dirname,"./src/types")
   }}
 });

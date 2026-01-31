@@ -15,7 +15,9 @@
       "mockdata": ["./src/mockdata/"],
       "@routes":["./src/routes/"],
       "@protected" : ["./src/protected/"],
-      "@container":["./src/container"]
+      "@container":["./src/container/"],
+      "@schema":["./src/schema/"],
+      "@types":["./src/types/"]
       
     },
     /* Bundler mode */

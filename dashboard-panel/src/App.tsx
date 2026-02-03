@@ -1,7 +1,7 @@
-import { LoginContainer } from "@container";
+import { Login } from "@container";
 
 function App() {
-  return  <LoginContainer/> ;
+  return <Login/>
 }
 
 export default App;

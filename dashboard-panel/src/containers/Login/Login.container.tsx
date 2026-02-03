@@ -2,19 +2,21 @@ import { useForm, FormProvider } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import type { FormData } from "@types";
 import { schema } from "@schema";
-import { LoginForm } from "@forms";
+import { LoginForm, type FormData } from "@forms";
 
-const LoginContainer = () => {
+const Login = () => {
 
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
     mode: "onChange",
   });
 
+  const { handleSubmit } = methods;
+
   const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log("user data", data);
+    // console.log("user data", data);
+    return data;
   };
 
   return (
@@ -25,7 +27,7 @@ const LoginContainer = () => {
         </h2>
 
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-5">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <LoginForm />
           </form>
         </FormProvider>
@@ -34,4 +36,4 @@ const LoginContainer = () => {
   );
 };
 
-export default LoginContainer;
+export default Login;

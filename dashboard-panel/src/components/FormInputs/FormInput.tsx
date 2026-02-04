@@ -1,13 +1,15 @@
-import type { props } from "./FormInput.type"
+import type { FormInputProps } from "./FormInput.type"
 
-const FormInput = ({label, type="text", placeholder, register, error, autocomplete,}:props) => {
+const FormInput:React.FC<FormInputProps>  = (props)=>{
+  const  {label, type ="text",placeholder,register,error,autoComplete } = props
+ 
   return (
     <div>
-        <label className="text-sm font-medium text-gray-700 mb-3 block"> 
+        <label htmlFor={label} className="text-sm font-medium text-gray-700 mb-3 block"> 
             {label}
         </label>
         
-        <input type={type} {...register} placeholder= {placeholder}  autoComplete={autocomplete} 
+        <input type={type} id={label} {...register} placeholder= {placeholder} autoComplete={autoComplete}
         className={`w-full px-4 py-2.5 rounded-lg border outline-none transition-all duration-200
         ${
           error

@@ -1,5 +1,7 @@
+import { Login } from "@container";
+
 function App() {
-  return <> Project Setup   </>;
+  return <Login/>
 }
 
 export default App;

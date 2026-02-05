@@ -1,6 +1,6 @@
 const Dashboard = () => {
   return (
-<> This is Dashboard </>
+<>WellCome to Dashboard </>
   )
 }
 

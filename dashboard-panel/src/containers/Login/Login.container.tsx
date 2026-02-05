@@ -4,9 +4,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { schema } from "@schema";
 import { LoginForm, type FormData } from "@forms";
+import { login } from "@api";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-
+  const navigate = useNavigate();
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
     mode: "onChange",
@@ -14,9 +16,15 @@ const Login = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    // console.log("user data", data);
-    return data;
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    try {
+      const res = await login(data);
+      localStorage.setItem("token", res.token);
+      navigate("/dashboard");
+      console.log("user data",res.token );
+    } catch (error) {
+      alert("Invalid username or password");
+    }
   };
 
   return (

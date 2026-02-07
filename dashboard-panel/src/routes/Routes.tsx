@@ -2,9 +2,9 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { Carts, Dashboard, Products, User } from "@pages";
 import { Login } from "@container";
-import Protected from "./Protected";
+import Protected from "./ProtectedRoute";
 
-const routes = createBrowserRouter([
+const Routes = createBrowserRouter([
   {
     path: "/",
     element: <Login />,
@@ -32,4 +32,4 @@ const routes = createBrowserRouter([
   },
 ]);
 
-export default routes;
+export default Routes;

@@ -1,11 +1,11 @@
+import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { schema } from "@schema";
 import { LoginForm, type FormData } from "@forms";
+import { schema } from "@schema";
 import { login } from "@api";
-import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,12 +16,10 @@ const Login = () => {
 
   const { handleSubmit } = methods;
 
-  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      const res = await login(data);
-      localStorage.setItem("token", res.token);
+      await login(data);
       navigate("/dashboard");
-      console.log("user data",res.token );
     } catch (error) {
       alert("Invalid username or password");
     }

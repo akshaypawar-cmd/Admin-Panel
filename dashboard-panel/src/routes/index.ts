@@ -1,2 +1,2 @@
 export * from "./Routes"
-export * from "./Protected"
+export * from "./ProtectedRoute"

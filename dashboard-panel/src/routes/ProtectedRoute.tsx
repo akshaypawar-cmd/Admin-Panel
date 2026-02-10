@@ -1,16 +1,14 @@
-import { authHelper } from "@api";
 import { Navigate, Outlet } from "react-router-dom";
 
-const ProtectedRoute = () => {
-  
-  const { getToken } = authHelper;
-  const token = getToken();
+import { getToken } from "./Token.login";
 
+const ProtectedRoute = () => {
+  const token = getToken();
   if (!token) {
     return <Navigate to="/" replace />;
   }
 
   return <Outlet />;
-};
+}
 
-export default ProtectedRoute;
+export default ProtectedRoute ;

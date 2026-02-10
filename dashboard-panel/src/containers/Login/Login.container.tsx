@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { LoginForm, type FormData } from "@forms";
 import { schema } from "@schema";
-import { login } from "@api";
+import { loginUser } from "@api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,7 +18,7 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     try {
-      await login(data);
+      await loginUser(data);
       navigate("/dashboard");
     } catch (error) {
       alert("Invalid username or password");

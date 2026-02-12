@@ -1,11 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import { useForm, FormProvider } from "react-hook-form";
-import type { SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { LoginForm, type FormData } from "@forms";
 import { schema } from "@schema";
-import { loginUser } from "@api";
+import { userLogin } from "@api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -15,16 +14,17 @@ const Login = () => {
   });
 
   const { handleSubmit } = methods;
-
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    try {
-      await loginUser(data);
-      navigate("/dashboard");
-    } catch (error) {
-      alert("Invalid username or password");
-    }
+  const { mutate } = userLogin();
+  const onSubmit = (data: FormData) => {
+    mutate(data, {
+      onSuccess: () => {
+        navigate("/dashboard");
+      },
+      onError: () => {
+        alert("Invalid username or password");
+      },
+    });
   };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-amber-700">
       <div className="bg-white w-96 rounded-2xl shadow-2xl p-8 transition-transform duration-300">

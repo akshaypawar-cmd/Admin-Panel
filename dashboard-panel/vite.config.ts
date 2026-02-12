@@ -16,6 +16,7 @@ export default defineConfig({
     "@container":path.resolve(__dirname,"./src/containers"),
     "@schema":path.resolve(__dirname,"./src/schema"),
     "@types":path.resolve(__dirname,"./src/types"),
-    "@forms":path.resolve(__dirname,"./src/Forms")
+    "@forms":path.resolve(__dirname,"./src/Forms"),
+    "@services":path.resolve(__dirname,"./src/services")
   }}
 });

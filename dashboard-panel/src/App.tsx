@@ -1,7 +1,9 @@
-import { Login } from "@container";
+import { RouterProvider } from "react-router-dom";
+
+import Routes from "./routes/Routes";
 
 function App() {
-  return <Login/>
+  return <RouterProvider router= {Routes} />
 }
 
 export default App;

@@ -4,7 +4,7 @@ export const schema = yup.object({
      username: yup 
      .string()
      .required("name is required")
-     .matches(/^[A-Z].*/, "First character must be a capital letter")
+     // .matches(/^[A-Z].*/, "First character must be a capital letter")
      .min(3,"minimum characters out of 3")
      .max(15,"maximum characters less than 15"),
 

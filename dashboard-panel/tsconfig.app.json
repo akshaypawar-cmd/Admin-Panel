@@ -18,8 +18,8 @@
       "@container":["./src/containers/"],
       "@schema":["./src/schema/"],
       "@types":["./src/types/"],
-      "@forms":["./src/Forms/"]
-      
+      "@forms":["./src/Forms/"],
+      "@services":["./src/services/"] 
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

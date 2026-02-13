@@ -12,14 +12,15 @@
       "@components":["./src/components/"],
       "@pages":["./src/pages/"],
       "@api":["./src/api/"],
-      "mockdata": ["./src/mockdata/"],
+      "@mockdata": ["./src/mockdata/"],
       "@routes":["./src/routes/"],
       "@protected" : ["./src/protected/"],
       "@container":["./src/containers/"],
       "@schema":["./src/schema/"],
       "@types":["./src/types/"],
       "@forms":["./src/Forms/"],
-      "@services":["./src/services/"] 
+      "@services":["./src/services/"] ,
+      "@common functionality":["./src/common functionality/"]
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

@@ -20,7 +20,8 @@
       "@types":["./src/types/"],
       "@forms":["./src/Forms/"],
       "@services":["./src/services/"] ,
-      "@common functionality":["./src/common functionality/"]
+      "@utils":["./src/utils/"]
+    
     },
     /* Bundler mode */
     "moduleResolution": "bundler",

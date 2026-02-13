@@ -1,2 +1,2 @@
-export * from "./UserProfile.api"
-export * from "./UserProfile.types"
+export * from "./userProfile.api"
+export * from "./userProfile.types"

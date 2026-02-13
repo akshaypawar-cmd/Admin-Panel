@@ -1,4 +1,4 @@
-import { useUserProfile } from "@common functionality";
+import { useUserProfile } from "@api";
 
 const UserProfile = () => {
   const { data, isLoading, error } = useUserProfile();
@@ -6,9 +6,9 @@ const UserProfile = () => {
   if (isLoading) return <p className="p-4 text-sm">Loading...</p>;
   if (error) return <p className="p-4 text-red-500">Error loading user</p>;
 
-  const loggedUsername = localStorage.getItem("username");
+  const loginUsername = localStorage.getItem("username");
 
-  const user = data?.find((u) => u.username === loggedUsername) || data?.[0];
+  const user = data?.find((u) => u.username === loginUsername) || data?.[0];
 
   if (!user) return null;
 
@@ -21,7 +21,7 @@ const UserProfile = () => {
         alt="user"
         className="w-12 h-12 rounded-full object-cover"
       />
-
+      
       <div className="flex flex-col">
         <span className="font-semibold text-sm">
           {user.username} {user.name.lastname}

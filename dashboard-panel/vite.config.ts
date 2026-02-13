@@ -18,6 +18,6 @@ export default defineConfig({
     "@types":path.resolve(__dirname,"./src/types"),
     "@forms":path.resolve(__dirname,"./src/Forms"),
     "@services":path.resolve(__dirname,"./src/services"),
-    "@common functionality":path.resolve(__dirname,"./src/common functionality")
+    "@utils":path.resolve(__dirname,"./src/utils")
   }}
 });

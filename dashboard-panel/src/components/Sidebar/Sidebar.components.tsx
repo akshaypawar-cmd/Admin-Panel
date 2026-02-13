@@ -4,8 +4,8 @@ import { useState } from "react";
 import { LogOut, Menu } from "lucide-react";
 
 import { sidebarLinks } from "@mockdata";
-import { useLogout } from "@common functionality";
 import { UserProfile } from "../User Profile";
+import { useLogout } from "@utils";
 
 function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);

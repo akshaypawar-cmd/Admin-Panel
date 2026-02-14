@@ -4,13 +4,14 @@ import { useState } from "react";
 import { LogOut, Menu } from "lucide-react";
 
 import { sidebarLinks } from "@mockdata";
-import { UserProfile } from "../User Profile";
 import { useLogout } from "@utils";
+import { UserProfile } from "../UserProfile";
 
-function Sidebar() {
+const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const logout = useLogout();
 
   const linkClass = (path: string) =>
     `flex items-center px-4 py-2 rounded-lg transition-all duration-300
@@ -21,7 +22,7 @@ function Sidebar() {
      }`;
 
   const handleLogout = () => {
-    useLogout();
+    logout();
     navigate("/");
   };
 
@@ -50,7 +51,7 @@ function Sidebar() {
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-2xl font-bold">Admin Panel</h2>
         </div>
-         <UserProfile/>
+       <UserProfile/>
         <ul className="space-y-2">
           {sidebarLinks.map((item) => {
             const Icon = item.icon;
@@ -71,7 +72,8 @@ function Sidebar() {
         </ul>
         <button
           onClick={handleLogout}
-          className={`flex items-center w-full gap-6 text-gray-500 ${linkClass}`}
+          className="flex items-center w-full gap-6 px-4 py-2 rounded-lg 
+             text-gray-300 hover:bg-red-500 hover:text-white transition-all duration-300 mt-2"
         >
           <LogOut className="size-5" />
           Logout
@@ -79,6 +81,6 @@ function Sidebar() {
       </div>
     </>
   );
-}
+};
 
 export default Sidebar;

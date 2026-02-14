@@ -1,4 +1,5 @@
 import { useUserProfile } from "@api";
+import { getStoredUsername } from "@utils";
 
 const UserProfile = () => {
   const { data, isLoading, error } = useUserProfile();
@@ -6,7 +7,7 @@ const UserProfile = () => {
   if (isLoading) return <p className="p-4 text-sm">Loading...</p>;
   if (error) return <p className="p-4 text-red-500">Error loading user</p>;
 
-  const loginUsername = localStorage.getItem("username");
+  const loginUsername = getStoredUsername()
 
   const user = data?.find((u) => u.username === loginUsername) || data?.[0];
 

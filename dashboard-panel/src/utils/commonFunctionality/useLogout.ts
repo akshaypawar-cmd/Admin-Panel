@@ -1,6 +1,6 @@
 export const useLogout = () => {
-  return () => {
+  return () => {  
      localStorage.removeItem("token")
-    localStorage.removeItem("token");
+   localStorage.removeItem("username")
   };
 };

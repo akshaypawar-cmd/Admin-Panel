@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 
 import { api } from "@services";
-import type { UserProfileResponse } from "./userProfile.types";
+import type { UserProfileResponse } from "./user.types";
 import { USER_API_ENDPOINTS } from "./use.endPoint";
 
 export const useUserProfile = () => {

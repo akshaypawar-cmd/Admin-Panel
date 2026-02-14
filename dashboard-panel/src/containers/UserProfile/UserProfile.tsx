@@ -1,4 +1,4 @@
-import { useUserProfile } from "@api";
+import { useUserProfile, type UserProfileResponse } from "@api";
 import { getStoredUsername } from "@utils";
 
 const UserProfile = () => {
@@ -9,7 +9,7 @@ const UserProfile = () => {
 
   const loginUsername = getStoredUsername()
 
-  const user = data?.find((u) => u.username === loginUsername) || data?.[0];
+  const user = data?.find((user:UserProfileResponse) => user.username === loginUsername) || data?.[0];
 
   if (!user) return null;
 

@@ -1,3 +1,3 @@
-export * from "./userProfile.types"
-export * from "./userProfile.api"
+export * from "./user.types"
+export * from "./user.api"
 export * from "./use.endPoint"

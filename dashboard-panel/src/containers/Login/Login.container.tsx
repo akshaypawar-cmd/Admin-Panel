@@ -25,6 +25,7 @@ const Login = () => {
       },
     });
   };
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-amber-700">
       <div className="bg-white w-96 rounded-2xl shadow-2xl p-8 transition-transform duration-300">

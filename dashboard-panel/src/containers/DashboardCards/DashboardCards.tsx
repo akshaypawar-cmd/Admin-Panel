@@ -1,11 +1,11 @@
 import { Package, ShoppingCart, Users } from "lucide-react";
 
-import { useCarts, useProducts, useUserProfile } from "@api";
+import {  useGetCarts, useGetProducts, useUserProfile } from "@api";
 
-const DashboardCards = () => {
+const DashboardCards = () => { 
   const { data: users } = useUserProfile();
-  const { data: products } = useProducts();
-  const { data: carts } = useCarts();
+  const { data: products } = useGetProducts();
+  const { data: carts } = useGetCarts();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">

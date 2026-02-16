@@ -4,7 +4,7 @@ import type { ProductsResponse } from "./products.types";
 import { PRODUCTS_API_ENDPOINTS } from "./products.endPoint";
 import { api } from "@services";
 
-export const useProducts = () => {
+export const useGetProducts = () => {
   return useQuery({
     queryKey: ["products"],
     queryFn: async (): Promise<ProductsResponse[]> => {
@@ -13,3 +13,5 @@ export const useProducts = () => {
     },
   });
 };
+
+

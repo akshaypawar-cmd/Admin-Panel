@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { LoginForm, type FormData } from "@forms";
 import { schema } from "@schema";
-import { userLogin } from "@api";
+import { authUserLogin } from "@api";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const Login = () => {
   });
 
   const { handleSubmit } = methods;
-  const { mutate } = userLogin();
+  const { mutate } = authUserLogin()
   const onSubmit = (data: FormData) => {
     mutate(data, {
       onSuccess: () => {

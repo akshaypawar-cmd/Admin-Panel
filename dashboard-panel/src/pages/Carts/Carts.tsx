@@ -1,7 +1,15 @@
-const Carts = () => {
-  return (
-   <> This is Carts Page</>
-  )
-}
+import { Sidebar } from "@container";
 
-export default Carts
+const Carts = () => {
+
+  return (
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1">
+        <div className="p-2 text-xl font-bold">This is Carts page </div>
+      </div>
+    </div>
+  );
+};
+
+export default Carts;

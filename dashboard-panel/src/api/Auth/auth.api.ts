@@ -1,10 +1,10 @@
 import { useMutation } from "@tanstack/react-query";
 
 import { api } from "@services";
-import type { LoginPayload } from "./login.types";
-import { AUTH_API_ENDPOINTS } from "./login.endPoint";
+import type { LoginPayload } from "./auth.types";
+import { AUTH_API_ENDPOINTS } from "./auth.endPoint";
 
-export const userLogin = () => {
+export const authUserLogin = () => {
   
   return useMutation({
     mutationFn: async (data: LoginPayload) => {

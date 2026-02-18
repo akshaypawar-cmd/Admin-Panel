@@ -1,36 +1,78 @@
 import { Package, ShoppingCart, Users } from "lucide-react";
 
-import {  useGetCarts, useGetProducts, useUserProfile } from "@api";
+import { useGetCarts, useGetProducts, useUserProfile } from "@api";
 
-const DashboardCards = () => { 
+const DashboardCards = () => {
   const { data: users } = useUserProfile();
   const { data: products } = useGetProducts();
   const { data: carts } = useGetCarts();
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-      <div className="bg-blue-500 text-white rounded-2xl shadow-lg p-8 flex justify-between items-center">
-        <div>
-          <h2 className="text-3xl font-bold mb-3">{users?.length ?? 0}</h2>
-          <p className="text-sm mt-1">Total Users</p>
+      <div className="bg-blue-500 rounded-2xl shadow-md p-6 flex justify-between items-start hover:shadow-xl transition duration-300">
+        <div className="space-y-3">
+          <p className="text-sm text-white font-medium">Total Users</p>
+
+          <h2 className="text-3xl font-bold text-black">
+            {users?.length ?? 0}
+          </h2>
+
+          <p className="text-xs text-white mt-4">Registered users in the system</p>
         </div>
-        <Users className="size-9" />
+
+        <div className="flex flex-col items-center gap-6">
+          <div className="bg-blue-100 text-blue-600 p-4 rounded-xl">
+            <Users className="size-7" />
+          </div>
+
+          <span className="text-xs bg-blue-100 text-blue-600 px-3 py-1 rounded-full">
+            Active Accounts
+          </span>
+        </div>
       </div>
 
-      <div className="bg-green-500 text-white rounded-2xl shadow-lg p-8 flex justify-between items-center">
-        <div>
-          <h2 className="text-3xl font-bold mb-3">{products?.length ?? 0}</h2>
-          <p className="text-sm mt-1">Total Products</p>
+      <div className="bg-green-500 rounded-2xl shadow-md p-6 flex justify-between items-start hover:shadow-xl transition duration-300">
+        <div className="space-y-3">
+          <p className="text-sm text-white font-medium">Total Products</p>
+
+          <h2 className="text-3xl font-bold text-black">
+            {products?.length ?? 0}
+          </h2>
+
+          <p className="text-xs text-white mt-4">Available products in inventory</p>
         </div>
-        <Package className="size-9" />
+
+        <div className="flex flex-col items-center gap-6">
+          <div className="bg-green-100 text-green-600 p-4 rounded-xl">
+            <Package className="size-7" />
+          </div>
+
+          <span className="text-xs bg-green-100 text-green-600 px-3 py-1 rounded-full">
+            In Stock
+          </span>
+        </div>
       </div>
 
-      <div className="bg-orange-500 text-white rounded-2xl shadow-lg p-8 flex justify-between items-center">
-        <div>
-          <h2 className="text-3xl font-bold mb-3">{carts?.length ?? 0}</h2>
-          <p className="text-sm mt-1">Total Carts</p>
+      <div className="bg-orange-500 rounded-2xl shadow-md p-6 flex justify-between items-start hover:shadow-xl transition duration-300">
+        <div className="space-y-3">
+          <p className="text-sm text-white font-medium">Total Carts</p>
+
+          <h2 className="text-3xl font-bold text-black">
+            {carts?.length ?? 0}
+          </h2>
+
+          <p className="text-xs text-white mt-4">User carts created</p>
         </div>
-        <ShoppingCart className="size-9" />
+
+        <div className="flex flex-col items-center gap-6">
+          <div className="bg-orange-100 text-orange-600 p-4 rounded-xl">
+            <ShoppingCart className="size-7" />
+          </div>
+
+          <span className="text-xs bg-orange-100 text-orange-600 px-3 py-1 rounded-full">
+            Pending Orders
+          </span>
+        </div>
       </div>
     </div>
   );

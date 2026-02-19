@@ -1,4 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+
+import { toast } from "react-hot-toast";
 
 import type { ProductsResponse } from "./products.types";
 import { PRODUCTS_API_ENDPOINTS } from "./products.endPoint";
@@ -14,4 +16,21 @@ export const useGetProducts = () => {
   });
 };
 
+export const useDeleteProduct = () => {
+  const queryClient = useQueryClient();
 
+  return useMutation({
+    mutationFn: async (id: number) => {
+      await api.delete(`${PRODUCTS_API_ENDPOINTS.products}/${id}`);
+    },
+    onSuccess: (_, id) => {
+      queryClient.setQueryData<ProductsResponse[]>(
+        ["products"],
+        (oldData) => oldData?.filter((item) => item.id !== id) || []
+        
+      );
+      toast.success("Product deleted successfully ");
+      
+    },
+  });
+};

@@ -5,11 +5,16 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
+import { useState } from "react";
+
 import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";
-import { Sidebar } from "@container";
+import { EditProduct, Sidebar } from "@container";
 
 const Products = () => {
+  const [selectedProduct, setSelectedProduct] =
+    useState<ProductsResponse | null>(null);
   const { data = [], isLoading, isError } = useGetProducts();
+
   const { mutate: deleteProduct } = useDeleteProduct();
 
   const handleDelete = (id: number) => {
@@ -33,11 +38,7 @@ const Products = () => {
           <div className="relative group">
             <span> {shortText}.... </span>
 
-            <div
-              className="absolute left-0 top-full mt-2 hidden group-hover:block
-                       bg-gray-800 text-white text-xs p-3 rounded-lg
-                         shadow-lg w-72 z-50"
-            >
+            <div className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-800 text-white text-xs p-3 rounded-lg    shadow-lg w-72 z-50">
               {fullText}
             </div>
           </div>
@@ -54,11 +55,7 @@ const Products = () => {
           <div className="relative group">
             <span> {shortText}.... </span>
 
-            <div
-              className="absolute left-0 top-full mt-2 hidden group-hover:block
-                       bg-gray-800 text-white text-xs p-3 rounded-lg
-                          w-72 z-50"
-            >
+            <div className="absolute left-15 top-full mt-2 hidden group-hover:block bg-gray-800 text-white text-xs p-3 rounded-lg w-72 z-50">
               {fullText}
             </div>
           </div>
@@ -92,8 +89,8 @@ const Products = () => {
             </button>
 
             <button
-              onClick={() => alert("update details")}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-1 rounded-lg text-xs cursor-pointer"
+              onClick={() => setSelectedProduct(rowData)}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-1 rounded-lg text-xs"
             >
               Edit
             </button>
@@ -113,12 +110,12 @@ const Products = () => {
   if (isError) return <div> Error Loading </div>;
 
   return (
-    <div className="flex">
+    <div className="flex min-h-screen">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 overflow-x-hidden">
         <div className="p-2 text-xl font-bold"> Products </div>
         <div className="p-4">
-          <div className="bg-white shadow-lg rounded-2xl overflow-x-auto">
+          <div className="shadow-lg rounded-2xl overflow-x-auto ">
             <table className="min-w-full text-sm text-left">
               <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
                 {table.getHeaderGroups().map((headerGroup) => (
@@ -139,7 +136,7 @@ const Products = () => {
                 {table.getRowModel().rows.map((row) => (
                   <tr
                     key={row.id}
-                    className="border-b hover:bg-gray-50 transition"
+                    className="border-b hover:bg-gray-100 transition"
                   >
                     {row.getVisibleCells().map((cell) => (
                       <td key={cell.id} className="px-6 py-4">
@@ -155,11 +152,17 @@ const Products = () => {
             </table>
 
             <div className="p-4 text-sm text-gray-500">
-              Total Products: {data.length}
+              Total Products :  <span className="text-green-500 font-bold">{data.length}  </span> 
             </div>
           </div>
         </div>
       </div>
+      {selectedProduct && (
+        <EditProduct
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
     </div>
   );
 };

@@ -26,11 +26,35 @@ export const useDeleteProduct = () => {
     onSuccess: (_, id) => {
       queryClient.setQueryData<ProductsResponse[]>(
         ["products"],
-        (oldData) => oldData?.filter((item) => item.id !== id) || []
-        
+        (oldData) => oldData?.filter((item) => item.id !== id) || [],
       );
       toast.success("Product deleted successfully ");
-      
+    },
+  });
+};
+
+export const useUpdateProduct = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (updatedProduct: ProductsResponse) => {
+      const { id, ...rest } = updatedProduct;
+      const { data } = await api.put(
+        `${PRODUCTS_API_ENDPOINTS.products}/${id}`,
+        rest,
+      );
+
+      return data;
+    },
+
+    onSuccess: (data) => {
+      queryClient.setQueryData<ProductsResponse[]>(
+        ["products"],
+        (oldData) =>
+          oldData?.map((item) => (item.id === data.id ? data : item)) || [],
+      );
+
+      toast.success("Product updated successfully");
     },
   });
 };

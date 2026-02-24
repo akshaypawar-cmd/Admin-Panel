@@ -1,20 +1,15 @@
-import {
-  createColumnHelper,
-  flexRender,
-  getCoreRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { createColumnHelper } from "@tanstack/react-table";
 
 import { useState } from "react";
 
 import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";
-import { EditProduct, Sidebar } from "@container";
+import { AddProducts, EditProduct, ProductsTable, Sidebar } from "@container";
 
 const Products = () => {
-  const [selectedProduct, setSelectedProduct] =
-    useState<ProductsResponse | null>(null);
-  const { data = [], isLoading, isError } = useGetProducts();
+  const [selectedProduct, setSelectedProduct] = useState<ProductsResponse | null>(null);
+  const [openForm, setOpenForm] = useState(false);
 
+  const { data = [], isLoading, isError , isPending } = useGetProducts();
   const { mutate: deleteProduct } = useDeleteProduct();
 
   const handleDelete = (id: number) => {
@@ -31,14 +26,14 @@ const Products = () => {
     columnHelper.accessor("title", {
       header: "Title",
       cell: (info) => {
-        const fullText = info.getValue();
+        const fullText = info.getValue() 
         const shortText = fullText.split(" ").slice(0, 3).join(" ");
 
         return (
           <div className="relative group">
             <span> {shortText}.... </span>
 
-            <div className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-800 text-white text-xs p-3 rounded-lg    shadow-lg w-72 z-50">
+            <div className="absolute left-0 top-full mt-2 hidden group-hover:block bg-gray-800 text-white text-xs p-3 rounded-lg shadow-lg w-72 z-50">
               {fullText}
             </div>
           </div>
@@ -48,7 +43,7 @@ const Products = () => {
     columnHelper.accessor("description", {
       header: "Descriptions",
       cell: (info) => {
-        const fullText = info.getValue();
+        const fullText = info.getValue() 
         const shortText = fullText.split(" ").slice(0, 3).join(" ");
 
         return (
@@ -100,12 +95,6 @@ const Products = () => {
     }),
   ];
 
-  const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
-  });
-
   if (isLoading) return <div> Loading Data...</div>;
   if (isError) return <div> Error Loading </div>;
 
@@ -113,56 +102,26 @@ const Products = () => {
     <div className="flex min-h-screen">
       <Sidebar />
       <div className="flex-1 overflow-x-hidden">
-        <div className="p-2 text-xl font-bold"> Products </div>
-        <div className="p-4">
-          <div className="shadow-lg rounded-2xl overflow-x-auto ">
-            <table className="min-w-full text-sm text-left">
-              <thead className="bg-gray-100 text-gray-700 uppercase text-xs">
-                {table.getHeaderGroups().map((headerGroup) => (
-                  <tr key={headerGroup.id}>
-                    {headerGroup.headers.map((header) => (
-                      <th key={header.id} className="px-6 py-3">
-                        {flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
-                      </th>
-                    ))}
-                  </tr>
-                ))}
-              </thead>
-
-              <tbody>
-                {table.getRowModel().rows.map((row) => (
-                  <tr
-                    key={row.id}
-                    className="border-b hover:bg-gray-100 transition"
-                  >
-                    {row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className="px-6 py-4">
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext(),
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-
-            <div className="p-4 text-sm text-gray-500">
-              Total Products :  <span className="text-green-500 font-bold">{data.length}  </span> 
-            </div>
-          </div>
+        <div className="p-2 text-xl font-bold flex justify-between items-center">
+          Products
+          <button
+            onClick={() => setOpenForm(true)}
+            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 mt-3 rounded-lg text-sm"
+          >
+            Add Product
+          </button>
         </div>
+
+        <ProductsTable data={data} columns={columns} />
       </div>
+
       {selectedProduct && (
         <EditProduct
           product={selectedProduct}
           onClose={() => setSelectedProduct(null)}
         />
       )}
+      {openForm && <AddProducts isPending={isPending} onClose={() => setOpenForm(false)} />}
     </div>
   );
 };

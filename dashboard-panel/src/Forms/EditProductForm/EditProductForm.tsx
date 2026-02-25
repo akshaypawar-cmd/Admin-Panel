@@ -1,54 +1,39 @@
+import { useFormContext } from "react-hook-form";
 import type { FC } from "react";
 
-import { useFormContext } from "react-hook-form";
-
 import { FormInput } from "@components";
-import type {  AddProductProps } from "../ProductAdd";
-import type { FormValues } from "@container";
+import type { AddProductProps, ProductField } from "../ProductAdd";
+import type { ProductsResponse } from "@api";
 
 const EditProductForm: FC<AddProductProps> = (props) => {
   const { onClose, isPending } = props;
   const {
     register,
     formState: { errors },
-  } = useFormContext<FormValues>();
+  } = useFormContext<ProductsResponse>();
 
-  const titleRegister = register("title");
-  const descriptionRegister = register("description");
-  const categoryRegister = register("category");
-  const priceRegister = register("price");
-
+  const productFields: ProductField[] = [
+    { name: "title", label: "Title", type: "text" },
+    { name: "description", label: "Description", type: "text" },
+    { name: "price", label: "Price", type: "number" },
+    { name: "category", label: "Category", type: "text" },
+  ];
   return (
     <>
-      <FormInput
-        id="title"
-        label="Title"
-        type="text"
-        register={titleRegister}
-        error={errors.title}
-      />
-
-      <FormInput
-        id="description"
-        label="Description"
-        type="text"
-        register={descriptionRegister}
-      />
-      <FormInput
-        id="category"
-        label="Category"
-        type="text"
-        register={categoryRegister}
-        error={errors.category}
-      />
-
-      <FormInput
-        id="price"
-        label="Price"
-        type="number"
-        register={priceRegister}
-        error={errors.price}
-      />
+      {productFields.map((field) => (
+        <FormInput
+          key={field.name}
+          id={field.name}
+          label={field.label}
+          type={field.type}
+          register={
+            field.name === "price"
+              ? register("price", { valueAsNumber: true })
+              : register(field.name)
+          }
+          error={errors[field.name as keyof ProductsResponse]}
+        />
+      ))}
 
       <div className="flex gap-4 pt-2">
         <button

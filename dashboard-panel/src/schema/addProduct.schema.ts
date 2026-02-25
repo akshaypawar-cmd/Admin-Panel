@@ -1,8 +1,6 @@
 import * as yup from "yup"
 
-import type { FormValues } from "@container"
-
-export const addInputSchema =  yup.object<FormValues>({
+export const addInputSchema =  yup.object({
   title:yup 
   .string()
   .required("Title is rquired")
@@ -15,6 +13,7 @@ export const addInputSchema =  yup.object<FormValues>({
 
   price:yup 
   .number() 
+  .typeError("Price must be a number")
   .required("Price is required")
   .positive("Price must be greater than 0"),
 

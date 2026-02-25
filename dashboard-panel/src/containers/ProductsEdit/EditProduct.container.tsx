@@ -1,15 +1,21 @@
 import { FormProvider, useForm } from "react-hook-form";
 
-import { useUpdateProduct } from "@api";
-import type { FormValues, Props } from "./editProduct.types";
+import { useUpdateProduct, type ProductsResponse } from "@api";
+import type { Props } from "./editProduct.types";
 import { EditProductForm } from "@forms";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { editProdctSchima } from "@schema";
 
 const EditProduct = ({ product, onClose }: Props) => {
   const { mutate: updateProduct, isPending } = useUpdateProduct();
-  const methodes = useForm<FormValues>({ defaultValues: product });
+  const methodes = useForm<ProductsResponse>({
+    defaultValues: product,
+    resolver: yupResolver(editProdctSchima),
+    mode: "onTouched",
+  });
   const { handleSubmit } = methodes;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data: ProductsResponse) => {
     updateProduct(
       { ...product, ...data },
       {
@@ -26,7 +32,7 @@ const EditProduct = ({ product, onClose }: Props) => {
         <FormProvider {...methodes}>
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="bg-white rounded-2xl shadow-2xl p-8 space-y-6"
+            className="bg-white rounded-2xl shadow-2xl p-8 space-y-2"
           >
             <div className="text-center">
               <h2 className="text-2xl font-bold text-gray-900">Edit Product</h2>

@@ -1,4 +1,4 @@
-import AddProductsInpusts from "./AddProductForm"
+import AddProductsForm from "./AddProductForm"
 
-export {AddProductsInpusts}
+export  {AddProductsForm}
 export * from "./addProductForm.types"

@@ -1,17 +1,12 @@
 import { FormProvider, useForm } from "react-hook-form";
-
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useAddProducts } from "@api";
-import type { ProductsResponse } from "@api";
-import { AddProductsInpusts, type AddProductProps } from "@forms";
-
+import { useAddProducts, type ProductsResponse} from "@api";
+import { AddProductsForm,    type AddProductProps } from "@forms";
 import { addInputSchema } from "@schema";
 
-type FormValues = Omit<ProductsResponse, "id">;
-
 const AddProduct = ({ onClose }: AddProductProps) => {
-  const methods = useForm<FormValues>({ 
+  const methods = useForm <ProductsResponse> ({ 
     resolver: yupResolver(addInputSchema),
     mode:"onTouched"
   }) ;
@@ -19,7 +14,7 @@ const AddProduct = ({ onClose }: AddProductProps) => {
 
   const { mutate: addProduct, isPending } = useAddProducts();
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = (data:ProductsResponse) => {
     addProduct(data, {
       onSuccess: () => {
         onClose();
@@ -32,7 +27,7 @@ const AddProduct = ({ onClose }: AddProductProps) => {
       <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6">
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <AddProductsInpusts isPending={isPending} onClose={onClose} />
+            <AddProductsForm isPending={isPending} onClose={onClose} />
           </form>
         </FormProvider>
       </div>

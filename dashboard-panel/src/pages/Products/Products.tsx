@@ -1,5 +1,4 @@
 import { createColumnHelper } from "@tanstack/react-table";
-
 import { useState } from "react";
 
 import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";

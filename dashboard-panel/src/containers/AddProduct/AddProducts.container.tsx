@@ -1,12 +1,12 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
-import { useAddProducts, type ProductsResponse} from "@api";
+import { useAddProducts,type RemoveIdProduct} from "@api";
 import { AddProductsForm,    type AddProductProps } from "@forms";
 import { addInputSchema } from "@schema";
 
 const AddProduct = ({ onClose }: AddProductProps) => {
-  const methods = useForm <ProductsResponse> ({ 
+  const methods = useForm <RemoveIdProduct> ({ 
     resolver: yupResolver(addInputSchema),
     mode:"onTouched"
   }) ;
@@ -14,7 +14,7 @@ const AddProduct = ({ onClose }: AddProductProps) => {
 
   const { mutate: addProduct, isPending } = useAddProducts();
 
-  const onSubmit = (data:ProductsResponse) => {
+  const onSubmit = (data:RemoveIdProduct) => {
     addProduct(data, {
       onSuccess: () => {
         onClose();

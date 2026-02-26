@@ -5,10 +5,11 @@ import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";
 import { AddProducts, EditProduct, ProductsTable, Sidebar } from "@container";
 
 const Products = () => {
-  const [selectedProduct, setSelectedProduct] = useState<ProductsResponse | null>(null);
+  const [selectedProduct, setSelectedProduct] =
+    useState<ProductsResponse | null>(null);
   const [openForm, setOpenForm] = useState(false);
 
-  const { data = [], isLoading, isError , isPending } = useGetProducts();
+  const { data = [], isLoading, isError, isPending } = useGetProducts();
   const { mutate: deleteProduct } = useDeleteProduct();
 
   const handleDelete = (id: number) => {
@@ -25,7 +26,7 @@ const Products = () => {
     columnHelper.accessor("title", {
       header: "Title",
       cell: (info) => {
-        const fullText = info.getValue() 
+        const fullText = info.getValue();
         const shortText = fullText.split(" ").slice(0, 3).join(" ");
 
         return (
@@ -42,7 +43,7 @@ const Products = () => {
     columnHelper.accessor("description", {
       header: "Descriptions",
       cell: (info) => {
-        const fullText = info.getValue() 
+        const fullText = info.getValue();
         const shortText = fullText.split(" ").slice(0, 3).join(" ");
 
         return (
@@ -56,17 +57,18 @@ const Products = () => {
         );
       },
     }),
+
+    columnHelper.accessor("category", {
+      header: "Category",
+      cell: (info) => info.getValue(),
+    }),
+
     columnHelper.accessor("price", {
       header: "Price",
       cell: (info) => (
         <span className="text-green-500 font-bold"> ${info.getValue()}</span>
       ),
     }),
-    columnHelper.accessor("category", {
-      header: "Category",
-      cell: (info) => info.getValue(),
-    }),
-
     columnHelper.display({
       id: "actions",
       header: "Actions",
@@ -120,7 +122,9 @@ const Products = () => {
           onClose={() => setSelectedProduct(null)}
         />
       )}
-      {openForm && <AddProducts isPending={isPending} onClose={() => setOpenForm(false)} />}
+      {openForm && (
+        <AddProducts isPending={isPending} onClose={() => setOpenForm(false)} />
+      )}
     </div>
   );
 };

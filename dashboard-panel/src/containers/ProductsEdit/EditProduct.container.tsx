@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from "react-hook-form";
 
-import { useUpdateProduct, type ProductsResponse } from "@api";
+import { useUpdateProduct,type RemoveIdProduct } from "@api";
 import type { Props } from "./editProduct.types";
 import { EditProductForm } from "@forms";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -8,14 +8,14 @@ import { editProdctSchima } from "@schema";
 
 const EditProduct = ({ product, onClose }: Props) => {
   const { mutate: updateProduct, isPending } = useUpdateProduct();
-  const methodes = useForm<ProductsResponse>({
+  const methodes = useForm<RemoveIdProduct>({
     defaultValues: product,
     resolver: yupResolver(editProdctSchima),
     mode: "onTouched",
   });
   const { handleSubmit } = methodes;
 
-  const onSubmit = (data: ProductsResponse) => {
+  const onSubmit = (data:RemoveIdProduct) => {
     updateProduct(
       { ...product, ...data },
       {

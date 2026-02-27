@@ -1,6 +1,6 @@
 import * as  yup from "yup"
 
-export const editProdctSchima = yup.object({
+export const editProductSchema = yup.object({
     title : yup 
     .string() 
     .required("Title is required")

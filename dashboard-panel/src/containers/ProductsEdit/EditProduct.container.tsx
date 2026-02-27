@@ -1,25 +1,35 @@
 import { FormProvider, useForm } from "react-hook-form";
-
-import { useUpdateProduct,type RemoveIdProduct } from "@api";
-import type { Props } from "./editProduct.types";
-import { EditProductForm } from "@forms";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { editProdctSchima } from "@schema";
+import { useQueryClient } from "@tanstack/react-query";
+import toast from "react-hot-toast";
+
+import { EditProductForm } from "@forms";
+import { useUpdateProduct, type ProductsResponse, type RemoveIdProduct } from "@api";
+import type { Props } from "./editProduct.types";
+import { editProductSchema } from "@schema";
 
 const EditProduct = ({ product, onClose }: Props) => {
   const { mutate: updateProduct, isPending } = useUpdateProduct();
   const methodes = useForm<RemoveIdProduct>({
     defaultValues: product,
-    resolver: yupResolver(editProdctSchima),
+    resolver: yupResolver(editProductSchema),
     mode: "onTouched",
   });
   const { handleSubmit } = methodes;
+  const queryClient = useQueryClient();
 
   const onSubmit = (data:RemoveIdProduct) => {
     updateProduct(
       { ...product, ...data },
       {
-        onSuccess: () => {
+        onSuccess: (data) => {
+          queryClient.setQueryData<ProductsResponse[]>(["products"], (oldData=[]) =>
+            oldData.map((item) =>
+              item.id === data.id ? data : item,
+            ),
+          );
+
+          toast.success("Product updated successfully"); 
           onClose();
         },
       },

@@ -5,7 +5,7 @@ const FormInput:React.FC<FormInputProps>  = (props)=>{
  
   return (
     <div>
-        <label htmlFor={label} className="text-sm font-medium text-gray-700 mb-3 block"> 
+        <label htmlFor={label} className="text-sm font-medium text-gray-700 mb-3 mt-2 block"> 
             {label}
         </label>
         

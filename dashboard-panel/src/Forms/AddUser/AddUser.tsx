@@ -11,10 +11,11 @@ const AddUserForm = () => {
 
   const usersField: UserFieldType[] = [
     { name: "firstname", label: "Firstname", type: "text" },
-    { name: "lastname", label: "LastName", type: "text" },
+    { name: "lastname", label: "Lastname", type: "text" },
     { name: "email", label: "E-mail", type: "email" },
     { name: "city", label: "City", type: "text" },
     { name: "phone", label: "Phone No.", type: "number" },
+    { name: "address", label: "Address", type: "text" },
   ];
   return (
     <div>
@@ -33,7 +34,7 @@ const AddUserForm = () => {
         type="submit"
         className="px-4 py-2 bg-green-500 text-white rounded-lg w-full mt-8"
       >
-        Create New User
+        CreateUser
       </button>
     </div>
   );

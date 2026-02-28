@@ -9,7 +9,7 @@ import { addUserSchema } from "@schema";
 const CreateUser = () => {
   const methods = useForm<CreateUserForm>({
     resolver: yupResolver(addUserSchema),
-    mode: "onTouched",
+    mode: "all",
   });
   const { mutate: createUser } = useCreateNewUser();
 
@@ -24,10 +24,10 @@ const CreateUser = () => {
   };
   
   return (
-    <div>
-      <div className="fixed inset-0 flex items-center justify-center z-50">
-        <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-6">
-          <p className="text-center p-2 font-bold text-xl">User Create</p>
+
+      <div className="fixed inset-0 flex items-center justify-center">
+        <div className="bg-white w-full max-w-md rounded-2xl shadow-xl p-4">
+          <p className="text-center font-bold text-xl">User Create </p>
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
               <AddUserForm />
@@ -35,7 +35,7 @@ const CreateUser = () => {
           </FormProvider>
         </div>
       </div>
-    </div>
+  
   );
 };
 

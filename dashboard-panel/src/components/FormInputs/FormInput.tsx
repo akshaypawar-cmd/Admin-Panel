@@ -5,8 +5,13 @@ const FormInput:React.FC<FormInputProps>  = (props)=>{
  
   return (
     <div>
-        <label htmlFor={label} className="text-sm font-medium text-gray-700 mb-3 mt-2 block"> 
+        <label htmlFor={label} className="text-sm font-medium text-gray-700 mb-3 mt-2 flex items-center gap-1"> 
             {label}
+            {
+              error && ( 
+                <span className="text-red-500 text-xl"> *</span>
+              )
+            }
         </label>
         
         <input type={type} id={label} {...register} placeholder= {placeholder} autoComplete={autoComplete}

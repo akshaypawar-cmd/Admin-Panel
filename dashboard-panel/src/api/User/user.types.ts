@@ -2,10 +2,9 @@ export type CreateUserForm = {
   firstname: string;
   lastname: string;
   email: string;
-  phone: number;
+  phone: string;
   address: string;
-  city: string;
-  
+
 };
 
 export type UserFieldType = {

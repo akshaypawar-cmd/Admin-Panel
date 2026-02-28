@@ -13,10 +13,10 @@ const AddUserForm = () => {
     { name: "firstname", label: "Firstname", type: "text" },
     { name: "lastname", label: "Lastname", type: "text" },
     { name: "email", label: "E-mail", type: "email" },
-    { name: "city", label: "City", type: "text" },
     { name: "phone", label: "Phone No.", type: "number" },
     { name: "address", label: "Address", type: "text" },
   ];
+  
   return (
     <div>
       {usersField.map((user) => (
@@ -32,9 +32,9 @@ const AddUserForm = () => {
 
       <button
         type="submit"
-        className="px-4 py-2 bg-green-500 text-white rounded-lg w-full mt-8"
+        className="px-4 py-2 bg-green-500 text-white rounded-lg w-full mt-4"
       >
-        CreateUser
+        AddeUser
       </button>
     </div>
   );

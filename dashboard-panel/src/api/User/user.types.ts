@@ -1,9 +1,15 @@
-export type UserProfileResponse = {
-  id: number;
+export type CreateUserForm = {
+  firstname: string;
+  lastname: string;
   email: string;
-  username: string;
-  name: {
-    firstname: string;
-    lastname: string;
-  };
+  phone: number;
+  address: string;
+  city: string;
+  
 };
+
+export type UserFieldType = {
+  name:keyof CreateUserForm 
+  label:string 
+  type:string
+} 

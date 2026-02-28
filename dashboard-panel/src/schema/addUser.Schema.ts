@@ -11,6 +11,10 @@ export const addUserSchema = yup.object({
     .required("LastName is required")
     .min(3, "minimum characters out of 3"),
 
+    email:yup 
+    .string()
+    .required("Email id is required"),
+    
   phone: yup
     .number()
     .required("Number is required")
@@ -19,4 +23,9 @@ export const addUserSchema = yup.object({
   address: yup
   .string()
   .required("address is required"),
+
+  city:yup 
+  .string()
+  .required("City is required"),
+  
 });

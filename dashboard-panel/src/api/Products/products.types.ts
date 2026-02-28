@@ -1,12 +1,9 @@
 export type ProductsResponse = {
-  id: number;
   title: string;
   price: number;
   description: string;
   category: string;
-  image: string;
-  rating: {
-    rate: number;
-    count: number;
-  };
-};
+  id :number
+}; 
+
+export type RemoveIdProduct = Omit<ProductsResponse, "id"> 

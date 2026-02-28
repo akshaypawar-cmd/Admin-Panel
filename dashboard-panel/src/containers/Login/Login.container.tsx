@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const methods = useForm<FormData>({
     resolver: yupResolver(schema),
-    mode: "onChange",
+    mode: "onTouched"
   });
 
   const { handleSubmit } = methods;

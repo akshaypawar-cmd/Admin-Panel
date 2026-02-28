@@ -1,10 +1,9 @@
 import { createColumnHelper } from "@tanstack/react-table";
+import toast from "react-hot-toast";
 import { useState } from "react";
 
 import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";
 import { AddProducts, EditProduct, ProductsTable, Sidebar } from "@container";
-import { useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 const Products = () => {
   const [selectedProduct, setSelectedProduct] =
@@ -13,16 +12,10 @@ const Products = () => {
 
   const { data = [], isLoading, isError, isPending } = useGetProducts();
   const { mutate: deleteProduct } = useDeleteProduct();
-  const queryClient = useQueryClient();
 
   const handleDelete = (id: number) => {
     deleteProduct(id, {
-      onSuccess: (_, id) => {
-        queryClient.setQueryData<ProductsResponse[]>(
-          ["products"],
-          (oldData) => oldData?.filter((item) => item.id !== id) || [],
-        );
-
+      onSuccess: () => {
         toast.success("Product deleted successfully");
       },
     });

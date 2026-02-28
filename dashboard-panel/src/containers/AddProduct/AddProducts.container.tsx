@@ -1,6 +1,5 @@
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { useAddProducts, type RemoveIdProduct } from "@api";
@@ -12,19 +11,15 @@ const AddProduct = ({ onClose }: AddProductProps) => {
     resolver: yupResolver(addInputSchema),
     mode: "onTouched",
   });
-  const queryClient = useQueryClient();
+
   const { handleSubmit } = methods;
   const { mutate: addProduct, isPending } = useAddProducts();
 
   const onSubmit = (data: RemoveIdProduct) => {
     addProduct(data, {
-      onSuccess: (newProduct) => {
-        queryClient.setQueryData<RemoveIdProduct[]>(
-          ["products"],
-          (oldData = []) => [...oldData, newProduct],
-        );
+      onSuccess: () => {
         toast.success("Product added successfully");
-        onClose();
+        onClose()
       },
     });
   };

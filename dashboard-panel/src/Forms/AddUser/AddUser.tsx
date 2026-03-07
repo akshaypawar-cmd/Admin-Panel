@@ -1,6 +1,6 @@
-import { useFormContext } from "react-hook-form";
+import { get, useFormContext } from "react-hook-form";
 
-import type { CreateUserForm, UserFieldType } from "@api";
+import type { CreateUserForm,UserFieldType } from "@api";
 import { FormInput } from "@components";
 
 const AddUserForm = () => {
@@ -10,15 +10,15 @@ const AddUserForm = () => {
   } = useFormContext<CreateUserForm>();
 
   const usersField: UserFieldType[] = [
-    { name: "firstname", label: "Firstname", type: "text" },
-    { name: "lastname", label: "Lastname", type: "text" },
+    { name: "name.firstname", label: "First name", type: "text" },
+    { name: "name.lastname", label: "Last name", type: "text" },
     { name: "email", label: "E-mail", type: "email" },
     { name: "phone", label: "Phone No.", type: "number" },
-    { name: "address", label: "Address", type: "text" },
+    { name: "address.city", label: "Address", type: "text" },
   ];
   
   return (
-    <div>
+    <div  className="rounded-xl flex flex-col">
       {usersField.map((user) => (
         <FormInput
           key={user.name}
@@ -26,16 +26,18 @@ const AddUserForm = () => {
           label={user.label}
           type={user.type}
           register={register(user.name)}
-          error={errors[user.name as keyof CreateUserForm]}
+          error={get(errors, user.name)}
         />
       ))}
-
-      <button
-        type="submit"
-        className="px-4 py-2 bg-green-500 text-white rounded-lg w-full mt-4"
-      >
-        AddeUser
-      </button>
+      
+        <div className="flex justify-end gap-3 mt-4">
+        <button
+          type="submit"
+          className="px-4 py-2 bg-green-500 text-white rounded-lg cursor-pointer"
+        > 
+           Create User 
+        </button>
+      </div>
     </div>
   );
 };

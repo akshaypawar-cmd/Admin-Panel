@@ -22,10 +22,13 @@ export const useCreateNewUser = () => {
       const { data } = await api.post(USER_API_ENDPOINTS.userProfile, newUser);
       return data;
     },
-    onSuccess: (newUser) => {
-      queryClient.setQueryData<CreateUserForm[]>(["user-profile"], 
-        (oldUser) =>oldUser ? [...oldUser, newUser] : [newUser],
-      );
-    },
+
+onSuccess: (data, newUser) => {
+  queryClient.setQueryData<CreateUserForm[]>(
+    ["users-profile"],
+    (oldUser = []) => [...oldUser, { ...newUser, id: data.id }]
+  );
+}
+   
   });
 };

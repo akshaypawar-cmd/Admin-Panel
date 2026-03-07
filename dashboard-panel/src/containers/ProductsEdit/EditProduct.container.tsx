@@ -3,7 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import toast from "react-hot-toast";
 
 import { EditProductForm } from "@forms";
-import {useUpdateProduct,type RemoveIdProduct,} from "@api";
+import { useUpdateProduct, type RemoveIdProduct } from "@api";
 import type { Props } from "./editProduct.types";
 import { editProductSchema } from "@schema";
 
@@ -29,8 +29,8 @@ const EditProduct = ({ product, onClose }: Props) => {
   };
 
   return (
-    <div className="fixed inset-0 mt-10 flex items-center justify-center z-50 px-4">
-      <div className="w-full max-w-md">
+    <div className="fixed inset-0 mt-10 flex items-center justify-center z-50 px-4" onClick={onClose}>
+      <div className="w-full max-w-md" onClick={(e) => e.stopPropagation()}>
         <FormProvider {...methodes}>
           <form
             onSubmit={handleSubmit(onSubmit)}

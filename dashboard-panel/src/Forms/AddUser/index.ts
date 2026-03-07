@@ -1,4 +1,3 @@
-import AddUserForm from "./AddUser" 
+import AddUserForm from "./AddUser"
 
 export {AddUserForm}
-

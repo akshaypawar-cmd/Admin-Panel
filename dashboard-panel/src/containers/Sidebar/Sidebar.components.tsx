@@ -1,14 +1,15 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
 import { LogOut, Menu } from "lucide-react";
 
 import { sidebarLinks } from "@mockdata";
 import { useLogout } from "@utils";
 import { UserProfile } from "../UserProfile";
+import { LogOutPopupMessage } from "../PopupMessage";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const logout = useLogout();
@@ -51,7 +52,7 @@ const Sidebar = () => {
         <div className="flex items-center justify-between mb-12">
           <h2 className="text-2xl font-bold">Admin Panel</h2>
         </div>
-       <UserProfile/>
+        <UserProfile />
         <ul className="space-y-2">
           {sidebarLinks.map((item) => {
             const Icon = item.icon;
@@ -71,14 +72,32 @@ const Sidebar = () => {
           })}
         </ul>
         <button
-          onClick={handleLogout}
-          className="flex items-center w-full gap-6 px-4 py-2 rounded-lg 
+          onClick={() => setShowLogoutModal(true)}
+          className="flex items-center w-full gap-6 px-4 py-2 rounded-lg cursor-pointer
              text-gray-300 hover:bg-red-500 hover:text-white transition-all duration-300 mt-2"
         >
           <LogOut className="size-5" />
           Logout
         </button>
       </div>
+
+      {showLogoutModal && (
+        <div
+          className="fixed inset-0 flex items-center justify-center z-50 backdrop-blur-xs "
+          onClick={() => setShowLogoutModal(false)}
+        >
+          <div onClick={(e) => e.stopPropagation()}>
+            <LogOutPopupMessage
+              isOpen={showLogoutModal}
+              onConfirm={() => {
+                handleLogout();
+                setShowLogoutModal(false);
+              }}
+              onCancel={() => setShowLogoutModal(false)}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 };

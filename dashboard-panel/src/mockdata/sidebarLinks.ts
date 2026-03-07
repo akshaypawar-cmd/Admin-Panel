@@ -1,4 +1,4 @@
-import { LayoutDashboard, Package, ShoppingCart, Users } from "lucide-react";
+import { LayoutDashboard, Package, Users } from "lucide-react";
 
 export const sidebarLinks = [ 
     {
@@ -16,9 +16,4 @@ export const sidebarLinks = [
         path:"/users",
         icon : Users
     },
-    {
-        name : "Carts",
-        path : "/carts",
-        icon : ShoppingCart
-    }
 ]

@@ -1,4 +1,5 @@
 import { Package, ShoppingCart, Users } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import { useGetCarts, useGetProducts, useUserProfile } from "@api";
 
@@ -6,14 +7,15 @@ const DashboardCards = () => {
   const { data: users } = useUserProfile();
   const { data: products } = useGetProducts();
   const { data: carts } = useGetCarts();
+  const  navigate = useNavigate()
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-6">
-      <div className="bg-blue-500 rounded-2xl shadow-md p-6 flex justify-between items-start hover:shadow-xl transition duration-300">
+      <div className="bg-blue-400 rounded-2xl shadow-md p-6 flex justify-between cursor-pointer items-start hover:shadow-xl transition duration-300" onClick={() => navigate("/users")}>
         <div className="space-y-3">
           <p className="text-sm text-white font-medium">Total Users</p>
 
-          <h2 className="text-3xl font-bold text-black">
+          <h2 className="text-3xl font-bold text-white">
             {users?.length ?? 0}
           </h2>
 
@@ -31,11 +33,11 @@ const DashboardCards = () => {
         </div>
       </div>
 
-      <div className="bg-green-500 rounded-2xl shadow-md p-6 flex justify-between items-start hover:shadow-xl transition duration-300">
+      <div className="bg-green-400 rounded-2xl shadow-md p-6 flex justify-between cursor-pointer items-start hover:shadow-xl transition duration-300" onClick={()=> navigate("/products")}>
         <div className="space-y-3">
           <p className="text-sm text-white font-medium">Total Products</p>
 
-          <h2 className="text-3xl font-bold text-black">
+          <h2 className="text-3xl font-bold text-white">
             {products?.length ?? 0}
           </h2>
 
@@ -53,7 +55,7 @@ const DashboardCards = () => {
         </div>
       </div>
 
-      <div className="bg-orange-500 rounded-2xl shadow-md p-6 flex justify-between items-start hover:shadow-xl transition duration-300">
+      <div className="bg-orange-500 rounded-2xl shadow-md p-6 flex cursor-pointer justify-between items-start hover:shadow-xl transition duration-300">
         <div className="space-y-3">
           <p className="text-sm text-white font-medium">Total Carts</p>
 

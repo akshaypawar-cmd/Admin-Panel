@@ -1,16 +1,18 @@
 import * as yup from "yup";
 
 export const addUserSchema = yup.object({
+
+  name:yup.object({
   firstname: yup
-    .string()
-    .required("firstname is required")
-    .min(3, "minimum characters out of 3"),
+     .string()
+     .required("first name is required")
+     .min(3, "must be at least 3 characters"),
 
-  lastname: yup
-    .string()
-    .required("lastName is required")
-    .min(3, "minimum characters out of 3"),
-
+   lastname: yup
+     .string()
+     .required("last name is required")
+     .min(3, "must be at least 3 characters")
+  }),
   email: yup
   .string() 
   .required("email is required"),
@@ -21,7 +23,10 @@ export const addUserSchema = yup.object({
     .required("number is required")
    .matches(/^[0-9]{10}$/, "phone number must be 10 digits"),
 
-  address: yup
-  .string()
-  .required("address is required"),
+  // address: yup.object({
+  //   city: yup
+  //     .string()
+  //     .required("city is required")
+  //     .min(10,"must be at least 10 characters")
+  // }).required(),
 });

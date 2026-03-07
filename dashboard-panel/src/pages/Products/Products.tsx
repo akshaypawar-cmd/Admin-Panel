@@ -1,9 +1,12 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import toast from "react-hot-toast";
 import { useState } from "react";
+import { ShoppingCart } from "lucide-react";
+
+import toast from "react-hot-toast";
 
 import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";
 import { AddProducts, EditProduct, ProductsTable, Sidebar } from "@container";
+
 
 const Products = () => {
   const [selectedProduct, setSelectedProduct] =
@@ -29,7 +32,7 @@ const Products = () => {
       cell: (info) => info.getValue(),
     }),
     columnHelper.accessor("title", {
-      header: "Title",
+      header: "Product Name",
       cell: (info) => {
         const fullText = info.getValue();
         const shortText = fullText.split(" ").slice(0, 3).join(" ");
@@ -65,7 +68,7 @@ const Products = () => {
 
     columnHelper.accessor("category", {
       header: "Category",
-      cell: (info) => info.getValue(),
+      cell: (info) => <span className="text-blue-500"> {info.getValue()}</span>,
     }),
 
     columnHelper.accessor("price", {
@@ -109,16 +112,24 @@ const Products = () => {
       <Sidebar />
       <div className="flex-1 overflow-x-hidden">
         <div className="p-2 text-xl font-bold flex justify-between items-center">
-          Products
+          <div>
+            Total Products : 
+            <span> {data.length}</span>
+          </div>
+
           <button
             onClick={() => setOpenForm(true)}
-            className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 mt-3 rounded-lg text-sm"
+            className="bg-green-500 hover:bg-green-600 cursor-pointer text-white px-4 py-2 mt-20 md:mt-2 rounded-lg text-sm flex items-center gap-2 transition-all duration-200"
           >
+            <ShoppingCart className="size-6" />
             Add Product
           </button>
         </div>
-
-        <ProductsTable data={data} columns={columns} />
+        <div
+          className={`transition-all duration-200 ${openForm || selectedProduct ? "blur-sm" : ""}`}
+        >
+          <ProductsTable data={data} columns={columns} />
+        </div>
       </div>
 
       {selectedProduct && (
@@ -127,6 +138,7 @@ const Products = () => {
           onClose={() => setSelectedProduct(null)}
         />
       )}
+
       {openForm && (
         <AddProducts isPending={isPending} onClose={() => setOpenForm(false)} />
       )}

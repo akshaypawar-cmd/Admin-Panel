@@ -1,4 +1,4 @@
-import { useUserProfile, type UserProfileResponse } from "@api";
+import { useUserProfile, type CreateUserForm,  } from "@api";
 import { getStoredUsername } from "@utils";
 
 const UserProfile = () => {
@@ -7,11 +7,10 @@ const UserProfile = () => {
   if (isLoading) return <p className="p-4 text-sm">Loading...</p>;
   if (error) return <p className="p-4 text-red-500">Error loading user</p>;
 
-  const loginUsername = getStoredUsername()
-
-  const user = data?.find((user:UserProfileResponse) => user.username === loginUsername) || data?.[0];
-
-  if (!user) return null;
+const loginUsername = getStoredUsername()
+const user = data?.find((user: CreateUserForm) =>user?.name?.firstname === loginUsername) ?? data?.[0];
+ 
+if (!user) return null;
 
   const avatar = `https://i.pravatar.cc/150?img=${user.id}`;
 
@@ -25,7 +24,7 @@ const UserProfile = () => {
       
       <div className="flex flex-col">
         <span className="font-semibold text-sm">
-          {user.username} {user.name.lastname}
+          {user.name.firstname} 
         </span>
 
         <span className="text-xs text-gray-500">{user.email}</span>

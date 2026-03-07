@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Carts, Dashboard, Products, User } from "@pages";
+import { Dashboard, Products, User } from "@pages";
 import { Login } from "@container";
 import Protected from "./ProtectedRoute";
 
@@ -24,10 +24,7 @@ const Routes = createBrowserRouter([
         path: "/users",
         element: <User />,
       },
-      {
-        path: "/carts",
-        element: <Carts />,
-      },
+     
     ],
   },
 ]);

@@ -6,9 +6,3 @@ export interface AddProductProps {
 };
 
 export type FieldNames = keyof ProductsResponse;
-
-export type ProductField = {
-  name: FieldNames;
-  label: string;
-  type: string;
-};

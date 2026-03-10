@@ -5,7 +5,7 @@ import { LogOut, Menu } from "lucide-react";
 import { sidebarLinks } from "@mockdata";
 import { useLogout } from "@utils";
 import { UserProfile } from "../UserProfile";
-import { LogOutPopupMessage } from "../PopupMessage";
+import { LogOutModal } from "@components";
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -87,9 +87,9 @@ const Sidebar = () => {
           onClick={() => setShowLogoutModal(false)}
         >
           <div onClick={(e) => e.stopPropagation()}>
-            <LogOutPopupMessage
+            <LogOutModal
               isOpen={showLogoutModal}
-              onConfirm={() => {
+              ConfirmLogout={() => {
                 handleLogout();
                 setShowLogoutModal(false);
               }}

@@ -1,4 +1,4 @@
-import { useUserProfile, type CreateUserForm,  } from "@api";
+import { useUserProfile, type UserResponse,  } from "@api";
 import { getStoredUsername } from "@utils";
 
 const UserProfile = () => {
@@ -8,7 +8,7 @@ const UserProfile = () => {
   if (error) return <p className="p-4 text-red-500">Error loading user</p>;
 
 const loginUsername = getStoredUsername()
-const user = data?.find((user: CreateUserForm) =>user?.name?.firstname === loginUsername) ?? data?.[0];
+const user = data?.find((user:UserResponse) =>user?.name?.firstname === loginUsername) ?? data?.[0];
  
 if (!user) return null;
 

@@ -8,11 +8,11 @@ import { useState } from "react";
 import type { FC } from "react";
 
 import type { ProductTableProps } from "./productTable.types";
-import { ProductPegination } from "../ProductPegination";
+import Pegination from "../Pegination/Pegination";
 
 const ProductsTable: FC<ProductTableProps> = ({ data, columns }) => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
-
+  
   const table = useReactTable({
     data,
     columns,
@@ -24,28 +24,6 @@ const ProductsTable: FC<ProductTableProps> = ({ data, columns }) => {
 
   const currentPage = table.getState().pagination.pageIndex;
   const totalPages = table.getPageCount();
-
-  const generatePages = () => {
-    const pages: (number | string)[] = [];
-
-    for (let i = 0; i < totalPages; i++) {
-      if (
-        i === 0 ||
-        i === 1 ||
-        i === totalPages - 1 ||
-        i === totalPages - 2 ||
-        Math.abs(i - currentPage) <= 1
-      ) {
-        pages.push(i);
-      } else if (pages[pages.length - 1] !== "...") {
-        pages.push("...");
-      }
-    }
-
-    return pages;
-  };
-
-  const pages = generatePages();
 
   return (
     <div className="p-4">
@@ -79,9 +57,9 @@ const ProductsTable: FC<ProductTableProps> = ({ data, columns }) => {
           </tbody>
         </table>
 
-        <ProductPegination
+        <Pegination
           table={table}
-          pages={pages}
+         totalPages={totalPages}
           currentPage={currentPage}
         />
       </div>

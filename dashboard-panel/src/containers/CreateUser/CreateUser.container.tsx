@@ -3,12 +3,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { toast } from "react-hot-toast";
 import { X } from "lucide-react";
 
-import { useCreateNewUser, type CreateUserForm, type UserCloseButtonProps} from "@api";
+import { useCreateNewUser, type UserResponse} from "@api";
 import { AddUserForm } from "@forms";
 import { addUserSchema } from "@schema";
+import type { UserCloseButtonProps } from "./createNewUser.type";
 
 const CreateUser:React.FC<UserCloseButtonProps> = ({ onClose }) => {
-  const methods = useForm<CreateUserForm>({
+  const methods = useForm<UserResponse>({
     resolver: yupResolver(addUserSchema),
     mode: "all",
   });
@@ -16,7 +17,7 @@ const CreateUser:React.FC<UserCloseButtonProps> = ({ onClose }) => {
 
   const { handleSubmit, reset } = methods;
 
-  const onSubmit = (data: CreateUserForm) => {
+  const onSubmit = (data: UserResponse) => {
     createUser(data, {
       onSuccess: () => {
         reset();

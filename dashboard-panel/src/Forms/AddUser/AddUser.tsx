@@ -1,13 +1,14 @@
 import { get, useFormContext } from "react-hook-form";
 
-import type { CreateUserForm,UserFieldType } from "@api";
+import type { UserResponse } from "@api";
 import { FormInput } from "@components";
+import type { UserFieldType } from "./userInputsField.types";
 
 const AddUserForm = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext<CreateUserForm>();
+  } = useFormContext<UserResponse>();
 
   const usersField: UserFieldType[] = [
     { name: "name.firstname", label: "First name", type: "text" },

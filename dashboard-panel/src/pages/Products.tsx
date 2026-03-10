@@ -1,5 +1,5 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ShoppingCart } from "lucide-react";
 
 import toast from "react-hot-toast";
@@ -26,7 +26,7 @@ const Products = () => {
 
   const columnHelper = createColumnHelper<ProductsResponse>();
 
-  const columns = [
+  const columns = useMemo( () => [
     columnHelper.accessor("id", {
       header: "ID",
       cell: (info) => info.getValue(),
@@ -102,7 +102,9 @@ const Products = () => {
         );
       },
     }),
-  ];
+  ] ,
+  []
+  ) ;
 
   if (isLoading) return <div> Loading Data...</div>;
   if (isError) return <div> Error Loading </div>;

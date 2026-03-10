@@ -1,6 +1,6 @@
 import { flexRender,getCoreRowModel,useReactTable} from "@tanstack/react-table";
 
-import type { UserTableProps } from "@api";
+import type { UserTableProps } from "./userTable.types";
 
 const UserTable: React.FC<UserTableProps> = (props) => {
   const { data, columns } = props;

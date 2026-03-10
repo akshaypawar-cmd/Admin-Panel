@@ -1,5 +1,5 @@
 export interface onConfirmPopupProps {
   isOpen: boolean;
-  onConfirm: () => void;
+  ConfirmLogout: () => void;
   onCancel: () => void;
 };

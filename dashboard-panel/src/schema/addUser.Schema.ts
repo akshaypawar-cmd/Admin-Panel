@@ -23,10 +23,9 @@ export const addUserSchema = yup.object({
     .required("number is required")
    .matches(/^[0-9]{10}$/, "phone number must be 10 digits"),
 
-  // address: yup.object({
-  //   city: yup
-  //     .string()
-  //     .required("city is required")
-  //     .min(10,"must be at least 10 characters")
-  // }).required(),
+  address: yup.object({
+    city: yup
+      .string()
+      .required("city is required")
+  }),
 });

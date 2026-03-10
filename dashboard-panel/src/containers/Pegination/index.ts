@@ -1,4 +1,4 @@
-import ProductPegination from "./ProductPegination"
+import ProductPegination from "./Pegination"
 
 export {ProductPegination} 
 export * from "./pegination.types"

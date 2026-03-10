@@ -2,9 +2,10 @@ import type React from "react";
 
 import type { onConfirmPopupProps } from "./popupMessage.types";
 
-const LogOutPopupMessage: React.FC<onConfirmPopupProps> = (props) => {
-  const { isOpen, onConfirm, onCancel } = props;
+const LogOutModal: React.FC<onConfirmPopupProps> = (props) => {
+  const { isOpen,ConfirmLogout, onCancel } = props;
   if (!isOpen) return null;
+  
   return (
     <>
       <div onClick={onCancel} />
@@ -22,7 +23,7 @@ const LogOutPopupMessage: React.FC<onConfirmPopupProps> = (props) => {
           </button>
 
           <button
-            onClick={onConfirm}
+            onClick={ConfirmLogout}
             className="px-4 py-2 rounded-lg bg-red-500 hover:bg-emerald-400 text-white cursor-pointer"
           >
             LogOut
@@ -33,4 +34,4 @@ const LogOutPopupMessage: React.FC<onConfirmPopupProps> = (props) => {
   );
 };
 
-export default LogOutPopupMessage;
+export default LogOutModal;

@@ -1,8 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import { Dashboard, Products, User } from "@pages";
 import { Login } from "@container";
 import Protected from "./ProtectedRoute";
+import Dashboard from "../pages/Dashboard";
+import Products from "../pages/Products";
+import User from "../pages/User";
 
 const Routes = createBrowserRouter([
   {

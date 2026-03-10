@@ -1,11 +1,10 @@
 import { useFormContext } from "react-hook-form";
-import type { FC } from "react";
 
 import { FormInput } from "@components";
-import type { AddProductProps, ProductField } from "../ProductAdd";
 import type { ProductsResponse } from "@api";
+import type { EditProductProps, ProductField } from "./editInutsFields.type";
 
-const EditProductForm: FC<AddProductProps> = (props) => {
+const EditProductForm:React.FC<EditProductProps> = (props) => {
   const { onClose, isPending } = props;
   const {
     register,

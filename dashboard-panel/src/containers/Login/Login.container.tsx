@@ -3,13 +3,13 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { LoginForm, type FormData } from "@forms";
-import { schema } from "@schema";
 import { authUserLogin } from "@api";
+import { LoginUserSchema } from "@schema";
 
 const Login = () => {
   const navigate = useNavigate();
   const methods = useForm<FormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(LoginUserSchema),
     mode: "onTouched"
   });
 

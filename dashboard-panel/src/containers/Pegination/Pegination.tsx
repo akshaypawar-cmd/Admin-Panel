@@ -1,10 +1,33 @@
 import { ChevronsLeft, ChevronsRight } from "lucide-react";
 
-import type { ProductPaginationProps } from "./pegination.types";
+import type { PaginationProps } from "./pegination.types";
 
-const ProductPegination: React.FC<ProductPaginationProps<any>> = (props) => {
-  const { table, pages, currentPage } = props;
+const Pegination: React.FC<PaginationProps> = (props) => {
+  const { table, totalPages, currentPage } = props;
   
+    const generatePages = () => {
+
+      const pages: (number | string)[] = [];
+  
+      for (let i = 0; i < totalPages; i++) {
+        if (
+          i === 0 ||
+          i === 1 ||
+          i === totalPages - 1 ||
+          i === totalPages - 2 ||
+          Math.abs(i - currentPage) <= 1
+        ) {
+          pages.push(i);
+        } else if (pages[pages.length - 1] !== "...") {
+          pages.push("...");
+        }
+      }
+  
+      return pages;
+    };
+  
+  const pages = generatePages();
+
   return (
     <div className="flex justify-center items-center gap-2 py-6">
       <button
@@ -47,4 +70,4 @@ const ProductPegination: React.FC<ProductPaginationProps<any>> = (props) => {
   );
 };
 
-export default ProductPegination;
+export default Pegination ;

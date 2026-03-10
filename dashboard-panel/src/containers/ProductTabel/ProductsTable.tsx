@@ -8,7 +8,7 @@ import { useState } from "react";
 import type { FC } from "react";
 
 import type { ProductTableProps } from "./productTable.types";
-import Pegination from "../Pegination/Pegination";
+import { Pegination } from "@components";
 
 const ProductsTable: FC<ProductTableProps> = ({ data, columns }) => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });

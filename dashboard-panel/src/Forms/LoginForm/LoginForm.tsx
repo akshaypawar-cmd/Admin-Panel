@@ -29,7 +29,7 @@ const LoginForm = () => {
       />
 
       <FormInput
-      id={"name"}
+      id={"password"}
        label="Password"
        type="password"
        placeholder="Enter your password"

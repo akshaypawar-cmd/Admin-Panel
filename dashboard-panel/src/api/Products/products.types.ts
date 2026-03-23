@@ -1,9 +1,18 @@
 export type ProductsResponse = {
+  /** Product title or name */
   title: string;
+  /** Product price */
   price: number;
+  /** Product description */
   description: string;
+  /** Product category */
   category: string;
-  id :number
-}; 
+  /** Unique product ID */
+  id: number;
+};
 
-export type RemoveIdProduct = Omit<ProductsResponse, "id"> 
+/**
+ * Product payload without ID
+ * Used when creating a new product
+ */
+export type RemoveIdProduct = Omit<ProductsResponse, "id">;

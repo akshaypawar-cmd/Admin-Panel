@@ -1,3 +1,3 @@
-import Sidebar from "./Sidebar.components"
+import Sidebar from "./Sidebar.containers"
 
 export {Sidebar}

@@ -4,6 +4,7 @@ import { api } from "@services";
 import { USER_API_ENDPOINTS } from "./user.endPoint";
 import type { UserResponse } from "./user.types";
 
+
 export const useUserProfile = () => {
   return useQuery({
     queryKey: ["users-profile"],

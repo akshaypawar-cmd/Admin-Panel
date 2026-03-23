@@ -17,6 +17,7 @@ const EditProductForm:React.FC<EditProductProps> = (props) => {
     { name: "price", label: "Price", type: "number" },
     { name: "category", label: "Category", type: "text" },
   ];
+  
   return (
     <>
       {productFields.map((field) => (

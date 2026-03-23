@@ -1,12 +1,11 @@
 import { createColumnHelper } from "@tanstack/react-table";
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { ShoppingCart } from "lucide-react";
-
+import type { ColumnDef } from "@tanstack/react-table";
 import toast from "react-hot-toast";
 
 import { useDeleteProduct, useGetProducts, type ProductsResponse } from "@api";
 import { AddProducts, EditProduct, ProductsTable, Sidebar } from "@container";
-
 
 const Products = () => {
   const [selectedProduct, setSelectedProduct] =
@@ -16,13 +15,13 @@ const Products = () => {
   const { data = [], isLoading, isError, isPending } = useGetProducts();
   const { mutate: deleteProduct } = useDeleteProduct();
 
-  const handleDelete = (id: number) => {
-    deleteProduct(id, {
-      onSuccess: () => {
-        toast.success("Product deleted successfully");
-      },
-    });
-  };
+const handleDelete = useCallback((id: number) => {
+  deleteProduct(id, {
+    onSuccess: () => {
+      toast.success("Product deleted successfully");
+    },
+  });
+}, [deleteProduct]); 
 
   const columnHelper = createColumnHelper<ProductsResponse>();
 
@@ -58,7 +57,7 @@ const Products = () => {
           <div className="relative group">
             <span> {shortText}.... </span>
 
-            <div className="absolute left-15 top-full mt-2 hidden group-hover:block bg-gray-800 text-white text-xs p-3 rounded-lg w-72 z-50">
+            <div className="absolute left-4 top-full mt-2 hidden group-hover:block bg-gray-800 text-white text-xs p-3 rounded-lg w-72 z-50">
               {fullText}
             </div>
           </div>
@@ -94,7 +93,7 @@ const Products = () => {
 
             <button
               onClick={() => setSelectedProduct(rowData)}
-              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-1 rounded-lg text-xs"
+              className="bg-blue-500  text-white px-6 py-1 rounded-lg text-xs cursor-pointer"
             >
               Edit
             </button>
@@ -102,8 +101,10 @@ const Products = () => {
         );
       },
     }),
-  ] ,
-  []
+  ]  as ColumnDef<ProductsResponse>[] ,
+  [columnHelper,
+   handleDelete,
+   setSelectedProduct]
   ) ;
 
   if (isLoading) return <div> Loading Data...</div>;
@@ -128,7 +129,7 @@ const Products = () => {
           </button>
         </div>
         <div
-          className={`transition-all duration-200 ${openForm || selectedProduct ? "blur-sm" : ""}`}
+          className={`transition-all duration-300 ${openForm || selectedProduct ? "blur-sm" : ""}`}
         >
           <ProductsTable data={data} columns={columns} />
         </div>

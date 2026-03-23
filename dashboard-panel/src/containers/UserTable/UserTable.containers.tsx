@@ -1,10 +1,13 @@
+"use no memo";
 import { flexRender,getCoreRowModel,useReactTable} from "@tanstack/react-table";
 
 import type { UserTableProps } from "./userTable.types";
 
 const UserTable: React.FC<UserTableProps> = (props) => {
   const { data, columns } = props;
-  const table = useReactTable({
+  
+  // eslint-disable-next-line react-hooks/incompatible-library
+  const table  = useReactTable({
     data,
     columns,
     getCoreRowModel: getCoreRowModel(),

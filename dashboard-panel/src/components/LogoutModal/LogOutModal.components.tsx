@@ -1,8 +1,8 @@
 import type React from "react";
 
-import type { onConfirmPopupProps } from "./popupMessage.types";
+import type { OnConfirmPopupProps } from "./logoutModal.types";
 
-const LogOutModal: React.FC<onConfirmPopupProps> = (props) => {
+const LogOutModal: React.FC<OnConfirmPopupProps> = (props) => {
   const { isOpen,ConfirmLogout, onCancel } = props;
   if (!isOpen) return null;
   

@@ -5,14 +5,13 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useState } from "react";
-import type { FC } from "react";
 
 import type { ProductTableProps } from "./productTable.types";
 import { Pegination } from "@components";
 
-const ProductsTable: FC<ProductTableProps> = ({ data, columns }) => {
+const ProductsTable:React.FC<ProductTableProps> = ({ data, columns }) => {
   const [pagination, setPagination] = useState({ pageIndex: 0, pageSize: 5 });
-  
+  // eslint-disable-next-line react-hooks/incompatible-library
   const table = useReactTable({
     data,
     columns,

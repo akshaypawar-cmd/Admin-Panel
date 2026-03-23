@@ -6,9 +6,7 @@ const Pegination: React.FC<PaginationProps> = (props) => {
   const { table, totalPages, currentPage } = props;
   
     const generatePages = () => {
-
-      const pages: (number | string)[] = [];
-  
+      const pages: (number | string)[] = [];  
       for (let i = 0; i < totalPages; i++) {
         if (
           i === 0 ||

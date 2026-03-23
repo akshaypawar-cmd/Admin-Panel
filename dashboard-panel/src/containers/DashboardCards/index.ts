@@ -1,3 +1,3 @@
-import DashboardCards from "./DashboardCards"
+import DashboardCards from "./DashboardCards.containers"
 
 export {DashboardCards}

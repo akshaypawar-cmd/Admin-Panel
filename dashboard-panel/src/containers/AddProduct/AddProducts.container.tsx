@@ -9,7 +9,7 @@ import { addInputSchema } from "@schema";
 const AddProduct = ({ onClose }: AddProductProps) => {
   const methods = useForm<RemoveIdProduct>({
     resolver: yupResolver(addInputSchema),
-    mode: "onTouched",
+    mode: "all",
   });
 
   const { handleSubmit } = methods;
@@ -25,8 +25,8 @@ const AddProduct = ({ onClose }: AddProductProps) => {
   };
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl p-6">
+    <div className="fixed inset-0 flex items-center justify-center z-50" onClick={onClose}>
+      <div className="bg-white w-full max-w-lg rounded-2xl shadow-xl mt-15 p-8" onClick={(e)=>e.stopPropagation()}>
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <AddProductsForm isPending={isPending} onClose={onClose} />

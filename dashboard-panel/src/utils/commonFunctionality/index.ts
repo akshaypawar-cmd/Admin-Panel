@@ -1,2 +1,2 @@
 export * from "./useLogout"
-export * from "./userName.store"
+export * from "./store"

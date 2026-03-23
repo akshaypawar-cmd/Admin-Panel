@@ -5,6 +5,7 @@ import { PRODUCTS_API_ENDPOINTS } from "./products.endPoint";
 import { api } from "@services";
 
 export const useGetProducts = () => {
+  
   return useQuery({
     queryKey: ["products"],
     queryFn: async (): Promise<ProductsResponse[]> => {

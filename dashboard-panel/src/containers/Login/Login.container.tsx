@@ -3,18 +3,18 @@ import { useForm, FormProvider } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 
 import { LoginForm, type FormData } from "@forms";
-import { schema } from "@schema";
-import { authUserLogin } from "@api";
+import { LoginUserSchema } from "@schema";
+import { UseAuthUserLogin } from "@api";
 
 const Login = () => {
   const navigate = useNavigate();
   const methods = useForm<FormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(LoginUserSchema),
     mode: "onTouched"
   });
 
   const { handleSubmit } = methods;
-  const { mutate } = authUserLogin()
+  const { mutate } = UseAuthUserLogin()
   const onSubmit = (data: FormData) => {
     mutate(data, {
       onSuccess: () => {
@@ -32,7 +32,6 @@ const Login = () => {
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
           User Login
         </h2>
-
         <FormProvider {...methods}>
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             <LoginForm />

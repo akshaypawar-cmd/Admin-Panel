@@ -1,9 +1,12 @@
-export type UserProfileResponse = {
-  id: number;
-  email: string;
-  username: string;
-  name: {
+export type UserResponse = {
+  id?:number
+  name:{
     firstname: string;
     lastname: string;
-  };
+  }
+  email: string;
+  phone: string;
+  address: {
+    city:string
+  }
 };

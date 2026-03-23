@@ -5,7 +5,7 @@ const Dashboard = () => {
   return (
     <div className="flex">
       <Sidebar />
-      <div className="flex-1">
+      <div className="flex-1 relative">
         <div className="p-2 text-xl font-bold">Welcome To Dashboard</div>
         <DashboardCards />
       </div>

@@ -4,7 +4,7 @@ import { api } from "@services";
 import type { LoginPayload } from "./auth.types";
 import { AUTH_API_ENDPOINTS } from "./auth.endPoint";
 
-export const authUserLogin = () => {
+export const UseAuthUserLogin = () => {
   
   return useMutation({
     mutationFn: async (data: LoginPayload) => {

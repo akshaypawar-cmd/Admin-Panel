@@ -29,7 +29,7 @@ const LoginForm = () => {
       />
 
       <FormInput
-      id={"name"}
+      id={"password"}
        label="Password"
        type="password"
        placeholder="Enter your password"
@@ -40,7 +40,7 @@ const LoginForm = () => {
 
       <button
         type="submit"
-        className="w-full py-3 mt-5 rounded-lg font-semibold text-white bg-orange-500 transition-all duration-300"
+        className="w-full py-3 mt-5 rounded-lg cursor-pointer font-semibold text-white bg-orange-500 transition-all duration-300"
       >
         Submit
       </button>

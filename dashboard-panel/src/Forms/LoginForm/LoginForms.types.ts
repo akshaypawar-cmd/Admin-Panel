@@ -1,4 +1,6 @@
 export type FormData = {
-  username : string
-  password :string
-}
+  // Username entered by the user for authentication
+  username: string;
+  // Password entered by the user
+  password: string;
+};

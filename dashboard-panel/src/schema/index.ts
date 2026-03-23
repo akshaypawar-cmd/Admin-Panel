@@ -1,3 +1,5 @@
-export * from "./Schema.inputs"
+export * from "./LoginUserSchema.inputs"
 export * from "./addProduct.schema"
 export * from "./editProduct.schema"
+export  * from "./LoginUserSchema.inputs"
+export * from "./addUser.Schema"

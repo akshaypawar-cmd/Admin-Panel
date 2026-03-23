@@ -1,8 +1,9 @@
 import { useFormContext } from "react-hook-form";
 
 import { FormInput } from "@components";
-import type { AddProductProps, ProductField } from "./addProductForm.types";
+import type { AddProductProps,  } from "./addProductForm.types";
 import type { ProductsResponse } from "@api";
+import type { ProductField } from "../EditProductForm";
 
 const AddProductsForm: React.FC<AddProductProps> = (props) => {
   const { onClose, isPending } = props;
@@ -37,7 +38,7 @@ const AddProductsForm: React.FC<AddProductProps> = (props) => {
         <button
           type="button"
           onClick={onClose}
-          className="px-4 py-2 bg-gray-500 text-white rounded-lg"
+          className="px-4 py-2 bg-gray-500 text-white rounded-lg cursor-pointer"
         >
           Cancel
         </button>
@@ -45,7 +46,7 @@ const AddProductsForm: React.FC<AddProductProps> = (props) => {
         <button
           type="submit"
           disabled={isPending}
-          className="px-4 py-2 bg-green-500 text-white rounded-lg"
+          className="px-4 py-2 bg-green-500 text-white rounded-lg cursor-pointer"
         >
           {isPending ? "Adding..." : "Add Product"}
         </button>
